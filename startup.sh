@@ -72,15 +72,18 @@ echo -ne "Starting the partitioning process, see the example for a 1TB SSD:
 > Size press ENTER to use the rest of the drive; Specfiy linux fs partition, type: 8300
 > Then enter name: 'home'; Move over to 'WRITE' and hit ENTER, type 'yes', then move to 'QUIT'
 "
+echo "Paused. Continue (Y/y)?"
+read paused
+if [ $paused == "y" ] || [ $paused == "Y" ]; then
+    echo " "
+fi
 cgdisk /dev/$drive
 mkfs.fat -F32 /dev/${drive}1
 mkswap /dev/${drive}2
 swapon /dev/${drive}2
 mkfs.ext4 /dev/${drive}3
 mkfs.ext4 /dev/${drive}4
-mount /dev/${drive}3 /mnt
-mkdir /mnt/boot
-mkdir /mnt/home
+mount /dev/${drive}3 /mnt && mkdir /mnt/boot && mkdir /mnt/home
 mount /dev/${drive}1 /mnt/boot
 mount /dev/${drive}4 /mnt/home
 lsblk
