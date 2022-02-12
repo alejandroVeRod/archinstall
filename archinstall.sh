@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /root
+cd /root/archinstall
 echo -ne "
 
           A
@@ -11,7 +11,7 @@ echo -ne "
      V/       \V
 
 "
-
+chmod +x startup.sh && chmod +x user.sh && chmod +x drivers.sh && chmod +x desktop.sh 
 bash startup.sh
 arch-chroot /mnt /root/archinstall/user.sh
 arch-chroot /mnt /root/archinstall/drivers.sh
