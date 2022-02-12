@@ -13,9 +13,9 @@ echo -ne "
 "
 chmod +x startup.sh && chmod +x user.sh && chmod +x drivers.sh && chmod +x desktop.sh 
 bash startup.sh
-arch-chroot /mnt ./root/archinstall/user.sh
-arch-chroot /mnt ./root/archinstall/drivers.sh
-arch-chroot /mnt ./root/archinstall/desktop.sh
+arch-chroot /mnt /root/archinstall/user.sh
+arch-chroot /mnt /root/archinstall/drivers.sh
+arch-chroot /mnt /root/archinstall/desktop.sh
 echo "To finish up, type 'exit' to exit the chroot into the installation"
 umount -l /mnt
 
