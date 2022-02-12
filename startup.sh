@@ -49,7 +49,8 @@ sgdisk -p /dev/sda && echo " "
 sgdisk -p /dev/sdb && echo " "
 sgdisk -p /dev/sdc && echo " "
 sgdisk -p /dev/sdd && echo " "
-echo -ne "Please choose the drive you want to use:
+echo -ne "
+Please choose the drive you want to use:
 WARNING: The selected drive will be wiped entirely
 "
 read drive
@@ -71,6 +72,7 @@ echo -ne "Starting the partitioning process, see the example for a 1TB SSD:
 > First sector hit ENTER for default
 > Size press ENTER to use the rest of the drive; Specfiy linux fs partition, type: 8300
 > Then enter name: 'home'; Move over to 'WRITE' and hit ENTER, type 'yes', then move to 'QUIT'
+
 "
 read -p "Press any key to continue... "
 cgdisk /dev/$drive
@@ -94,7 +96,7 @@ echo -ne "[Running] Mirrors
 clear
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 pacman -S pacman-contrib --noconfirm
-rankmirrors -n 8 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 echo -ne "[Finished] Mirrors
 
 "
