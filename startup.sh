@@ -58,28 +58,20 @@ sgdisk --zap-all /dev/$drive
 echo -ne "Starting the partitioning process, see the example for a 1TB SSD:
 
 > 'NEW', first sector hit ENTER for default
-> Size enter 512MiB, ENTER
-> Specfiy efi boot partition, type: EF00
-> Then enter name: 'boot'
-> Move down to the rest of the free space, ENTER
+> Size enter 512MiB, ENTER; Specfiy efi boot partition, type: EF00
+> Then enter name: 'boot'; Move down to the rest of the free space, ENTER
 
 > First sector hit ENTER for default
-> Size enter 16GiB, ENTER
-> Specfiy swap partition, type: 8200
-> Then enter name: 'swap'
-> Move down to the rest of the free space, ENTER
+> Size enter 16GiB, ENTER; Specfiy swap partition, type: 8200
+> Then enter name: 'swap'; Move down to the rest of the free space, ENTER
 
 > First sector hit ENTER for default
-> Size enter 100GiB, ENTER
-> Specfiy linux fs partition, type: 8300
-> Then enter name: 'root'
-> Move down to the rest of the free space, ENTER
+> Size enter 100GiB, ENTER; Specfiy linux fs partition, type: 8300
+> Then enter name: 'root'; Move down to the rest of the free space, ENTER
 
 > First sector hit ENTER for default
-> Size press ENTER to use the rest of the drive
-> pecfiy linux fs partition, type: 8300
-> Then enter name: 'home'
->Move over to 'WRITE' and hit ENTER, type 'yes', then move to 'QUIT'
+> Size press ENTER to use the rest of the drive; Specfiy linux fs partition, type: 8300
+> Then enter name: 'home'; Move over to 'WRITE' and hit ENTER, type 'yes', then move to 'QUIT'
 "
 cgdisk /dev/$drive
 mkfs.fat -F32 /dev/${drive}1
