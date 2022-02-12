@@ -17,7 +17,7 @@ cd /root && mv archinstall /mnt/root
 arch-chroot /mnt /root/archinstall/user.sh
 arch-chroot /mnt /root/archinstall/drivers.sh
 arch-chroot /mnt /root/archinstall/desktop.sh
-echo "To finish up, type 'exit' to exit the chroot into the installation"
+#'sudo exit' here?
 umount -l /mnt
 
 echo -ne "
