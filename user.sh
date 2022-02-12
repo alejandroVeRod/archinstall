@@ -5,7 +5,9 @@ echo -ne "[Running] Locale
 
 "
 pacman -S nano bash-completion --noconfirm
-cat /etc/locale.gen | grep de
+echo "Starting locale setup, enter [uk, de, us, utf] to find:"
+read nation
+cat /etc/locale.gen | grep $nation
 echo "Please enter your locale as listed:"
 read locale
 echo $locale >> /etc/locale.gen
@@ -17,7 +19,8 @@ echo "Re-enter specific keyboard layout from the search results:"
 read layout3
 echo "KEYMAP=$layout3" >> /etc/vconsole.conf
 ls /usr/share/zoneinfo
-echo -ne "Enter your timezone::
+echo -ne "
+Enter your timezone:
 > Blue names are folders, e.g in Europe there is Berlin, Paris
 > Enter 'Europe/Berlin'
 "
