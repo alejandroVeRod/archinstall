@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "[Starting] Archinstall Drivers Script"
 ##Drivers
 echo -ne "[Running] Drivers
 
@@ -152,4 +153,8 @@ echo -ne "
 [Finished] Drivers
 
 "
+echo -ne "[Exiting] Archinstall Drivers Script
+
+"
+
 
