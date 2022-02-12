@@ -5,10 +5,11 @@ clear
 echo -ne "[Running] Keymap
 
 "
-echo "Please select your desired keymap [de, us, uk...]:"
+echo "Please select your desired keymap [de, us, uk ...]:"
 read layout
 localectl list-keymaps | grep $layout
-echo "Enter specific keyboard layout from the search results:"
+echo -ne "
+Enter specific keyboard layout from the search results:"
 read layout2
 loadkeys $layout2
 echo -ne "[Finished] Keymap
@@ -21,7 +22,8 @@ echo -ne "[Running] WiFi
 "
 #https://wiki.archlinux.org/title/Network_configuration/Wireless#Utilities
 ip -c a
-echo "Set-up WiFi Connection (Y/n)?"
+echo -ne "
+Set-up WiFi Connection (Y/n)?"
 read wifi
 if [ $wifi == "y" ] || [ $wifi == "Y" ]; then
     echo "Enter the WiFi device name [wlan0, wlan1]:"
@@ -50,31 +52,30 @@ sgdisk -p /dev/sdb && echo " "
 sgdisk -p /dev/sdc && echo " "
 sgdisk -p /dev/sdd && echo " "
 echo -ne "
-Please choose the drive you want to use:
-WARNING: The selected drive will be wiped entirely
+Please choose the drive you want to use (WARN: The selected drive will be wiped entirely):
 "
 read drive
 sgdisk --zap-all /dev/$drive
 echo -ne "Starting the partitioning process, see the example for a 1TB SSD:
 
-> 'NEW', first sector hit ENTER for default
-> Size enter 512MiB, ENTER; Specfiy efi boot partition, type: EF00
-> Then enter name: 'boot'; Move down to the rest of the free space, ENTER
+  'NEW', first sector hit ENTER for default
+  Size enter 512MiB, ENTER; Specfiy efi boot partition, type: EF00
+  Then enter name: 'boot'; Move down to the rest of the free space, ENTER
 
-> First sector hit ENTER for default
-> Size enter 16GiB, ENTER; Specfiy swap partition, type: 8200
-> Then enter name: 'swap'; Move down to the rest of the free space, ENTER
+  First sector hit ENTER for default
+  Size enter 16GiB, ENTER; Specfiy swap partition, type: 8200
+  Then enter name: 'swap'; Move down to the rest of the free space, ENTER
 
-> First sector hit ENTER for default
-> Size enter 100GiB, ENTER; Specfiy linux fs partition, type: 8300
-> Then enter name: 'root'; Move down to the rest of the free space, ENTER
+  First sector hit ENTER for default
+  Size enter 100GiB, ENTER; Specfiy linux fs partition, type: 8300
+  Then enter name: 'root'; Move down to the rest of the free space, ENTER
 
-> First sector hit ENTER for default
-> Size press ENTER to use the rest of the drive; Specfiy linux fs partition, type: 8300
-> Then enter name: 'home'; Move over to 'WRITE' and hit ENTER, type 'yes', then move to 'QUIT'
+  First sector hit ENTER for default
+  Size press ENTER to use the rest of the drive; Specfiy linux fs partition, type: 8300
+  Then enter name: 'home'; Move over to 'WRITE' and hit ENTER, type 'yes', then move to 'QUIT'
 
 "
-read -p "Press any key to continue... "
+read -p "Press any key to continue..."
 cgdisk /dev/$drive
 mkfs.fat -F32 /dev/${drive}1
 mkswap /dev/${drive}2
@@ -111,7 +112,6 @@ echo -ne "[Finished] Pacstrap
 
 "
 
-clear
 echo -ne "[Exiting] Archinstall Startup Script
 
 "
