@@ -34,9 +34,9 @@ pacman -S lm_sensors mpv celluloid thunderbird firefox discord gimp okular kate 
 #LibreOffice
 pacman -S libreoffice-still ttf-caladea ttf-carlito ttf-dejavu ttf-liberation ttf-linux-libertine-g noto-fonts noto-fonts-cjk noto-fonts-emoji --noconfirm --needed
 #OBS
-pacman -S ffmpeg obs-studio
+pacman -S ffmpeg obs-studio --noconfirm
 #Emus
-pacman -S ppsspp desmume pcsx2 realtime-privileges
+pacman -S ppsspp desmume pcsx2 realtime-privileges --noconfirm
 echo -ne "
 Please re-enter your user account name in lowercase:"
 read useracc2
