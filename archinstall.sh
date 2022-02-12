@@ -1,6 +1,5 @@
 #!/bin/bash
 cd /root
-setfont ter-132n
 echo -ne "
 
           A
