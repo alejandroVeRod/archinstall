@@ -6,7 +6,7 @@ echo -ne "
           A
          AVA
         AVAVA
-       AV/ \VA             STARTING
+       AV/ \VA             [Welcome to archinstall!]
       AV/   \VA
      AV/     \VA
      V/       \V
@@ -14,17 +14,17 @@ echo -ne "
 "
 
 bash startup.sh
-bash user.sh
-bash drivers.sh
-bash desktop.sh
-bash standards.sh
+arch-chroot /mnt /root/archinstall/user.sh
+arch-chroot /mnt /root/archinstall/drivers.sh
+arch-chroot /mnt /root/archinstall/desktop.sh
+arch-chroot /mnt /root/archinstall/standards.sh
 
 echo -ne "
 
           A
          AVA
         AVAVA
-       AV/ \VA             FINISHED
+       AV/ \VA             [The installation has been finished.]
       AV/   \VA
      AV/     \VA
      V/       \V
