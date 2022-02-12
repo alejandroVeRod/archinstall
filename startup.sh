@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Archinstall Startup Script"
+echo "[Starting] Archinstall Startup Script"
 clear
 ##Keymap
 echo -ne "[Running] Keymap
@@ -38,7 +38,6 @@ fi
 echo -ne "[Finished] WiFi
 
 "
-
 
 ##Partitioning
 echo -ne "[Running] Partitioning
@@ -89,3 +88,30 @@ echo -ne "[Finished] Partitioning
 
 "
 
+##Ranking Mirrors
+echo -ne "[Running] Mirrors
+
+"
+clear
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+pacman -S pacman-contrib --noconfirm
+rankmirrors -n 8 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+echo -ne "[Finished] Mirrors
+
+"
+
+##Basic OS Packages
+echo -ne "[Running] Pacstrap
+
+"
+pacstrap -i /mnt base base-devel linux linux-firmware linux-headers --noconfirm
+genfstab -U -p /mnt >> /mnt/etc/fstab
+echo -ne "[Finished] Pacstrap
+
+"
+
+clear
+arch-chroot /mnt
+echo -ne "[Exiting] Archinstall Startup Script
+
+"
