@@ -5,24 +5,31 @@ echo -ne "[Running] Locale
 
 "
 pacman -S nano bash-completion --noconfirm
-echo "Starting locale setup, enter [uk, de, us, utf] to find:"
+echo -ne "
+Starting locale setup, enter [uk, de, us, utf] to find:"
 read nation
 cat /etc/locale.gen | grep $nation
-echo "Please enter your locale as listed:"
+echo -ne "
+Please enter your locale fully as listed [e.g en_US.UTF-8 UTF-8]:"
 read locale
 echo $locale >> /etc/locale.gen
 locale-gen
-echo LANG=$locale > /etc/locale.conf
-export LANG=$locale
-#Try reusing lyaout var in startup? To be safe:
-echo "Re-enter specific keyboard layout from the search results:"
+echo -ne "
+Please enter your locale partially as listed [e.g en_US.UTF-8]:"
+read locale2
+echo LANG=$locale2 > /etc/locale.conf
+export LANG=$locale2
+#Try reusing layout var in startup? To be safe:
+echo -ne "
+Re-enter specific keyboard layout from the search results:"
 read layout3
 echo "KEYMAP=$layout3" >> /etc/vconsole.conf
 ls /usr/share/zoneinfo
 echo -ne "
 Enter your timezone:
-> Blue names are folders, e.g in Europe there is Berlin, Paris
-> Enter 'Europe/Berlin'
+
+  Blue names are folders, e.g in Europe there is Berlin, Paris
+  Enter 'Europe/Berlin'
 "
 read zone
 ln -sf /usr/share/zoneinfo/$zone > /etc/localtime
@@ -57,12 +64,15 @@ echo 127.0.0.1 localhost >> /etc/hosts
 echo ::1       localhost >> /etc/hosts
 echo 127.0.1.1 $hostname  >> /etc/hosts
 #Root Account
-echo "Please set a password for the root account:"
+echo -ne "
+Please set a password for the root account:"
 passwd
-echo "Please create a user account by entering a user name in lowercase:"
+echo -ne "
+Please create a user account by entering a user name in lowercase:"
 read useracc
 useradd -m -g users -G wheel,storage,power -s /bin/bash $useracc
-echo "Please set a password for the user account:"
+echo -ne "
+Please set a password for the user account:"
 passwd $useracc
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 echo "Defaults rootpw" >> /etc/sudoers
