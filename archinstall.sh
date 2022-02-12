@@ -25,9 +25,10 @@ echo -ne "
           A
          AVA
         AVAVA
-       AV/ \VA             [The installation has been finished, type 'reboot now']
+       AV/ \VA             [The installation has been finished! Remove the usb-medium.]
       AV/   \VA
      AV/     \VA
      V/       \V
 
 "
+reboot now
