@@ -37,9 +37,8 @@ pacman -S libreoffice-still ttf-caladea ttf-carlito ttf-dejavu ttf-liberation tt
 pacman -S ffmpeg obs-studio --noconfirm
 #Emus
 pacman -S ppsspp desmume pcsx2 realtime-privileges --noconfirm
-echo -ne "
-Please re-enter your user account name in lowercase:"
-read useracc2
+echo " "
+read -p "Please re-enter your user account name in lowercase:" useracc2
 usermod -a -G realtime $useracc2
 echo "*      soft      memlock      unlimited" >> /etc/security/limits.conf
 echo "*      soft      memlock      unlimited" >> /etc/security/limits.conf
