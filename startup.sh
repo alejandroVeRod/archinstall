@@ -46,7 +46,7 @@ sgdisk -p /dev/sda && echo " "
 sgdisk -p /dev/sdb && echo " "
 sgdisk -p /dev/sdc && echo " "
 sgdisk -p /dev/sdd && echo " "
-read -p "Please choose the drive you want to use (WARN: The selected drive will be wiped entirely): " drive
+read -p "Please choose the drive you want to use (WARN: The drive will be wiped entirely): " drive
 sgdisk --zap-all /dev/$drive
 echo -ne "Starting the partitioning process, see the example for a 1TB SSD:
 
@@ -72,8 +72,10 @@ cgdisk /dev/$drive
 mkfs.fat -F32 /dev/${drive}1
 mkswap /dev/${drive}2
 swapon /dev/${drive}2
-mkfs.ext4 /dev/${drive}3
-mkfs.ext4 /dev/${drive}4
+echo " "
+read -p "Please specify your desired 'root' and 'home' partition filesystem [ext4, btrfs]: " partfs
+mkfs.$partfs /dev/${drive}3
+mkfs.$partfs /dev/${drive}4
 mount /dev/${drive}3 /mnt && mkdir /mnt/boot && mkdir /mnt/home
 mount /dev/${drive}1 /mnt/boot
 mount /dev/${drive}4 /mnt/home
