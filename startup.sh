@@ -5,12 +5,10 @@ clear
 echo -ne "[Running] Keymap
 
 "
-echo "Please select your desired keymap [de, us, uk ...]:"
-read layout
+read -p "Please select your desired keymap [de, us, uk ...]: " layout
 localectl list-keymaps | grep $layout
-echo -ne "
-Enter specific keyboard layout from the search results:"
-read layout2
+echo " "
+read -p "Enter specific keyboard layout from the search results: " layout2
 loadkeys $layout2
 echo -ne "[Finished] Keymap
 
@@ -22,14 +20,11 @@ echo -ne "[Running] WiFi
 "
 #https://wiki.archlinux.org/title/Network_configuration/Wireless#Utilities
 ip -c a
-echo -ne "
-Set-up WiFi Connection (Y/n)?"
-read wifi
+echo " "
+read -p "Set-up WiFi Connection (Y/n)? " wifi
 if [ $wifi == "y" ] || [ $wifi == "Y" ]; then
-    echo "Enter the WiFi device name [wlan0, wlan1]:"
-    read wdev
-    echo "Enter the SSID / name of your WiFi network:"
-    read ssid
+    read -p "Enter the WiFi device name [wlan0, wlan1]: " wdev
+    read -p "Enter the SSID / name of your WiFi network: " ssid
     echo "Connecting, please enter your WiFi password:"
     iw dev $wdev connect $ssid
     echo "Attempting sync..."
@@ -51,10 +46,7 @@ sgdisk -p /dev/sda && echo " "
 sgdisk -p /dev/sdb && echo " "
 sgdisk -p /dev/sdc && echo " "
 sgdisk -p /dev/sdd && echo " "
-echo -ne "
-Please choose the drive you want to use (WARN: The selected drive will be wiped entirely):
-"
-read drive
+read -p "Please choose the drive you want to use (WARN: The selected drive will be wiped entirely): " drive
 sgdisk --zap-all /dev/$drive
 echo -ne "Starting the partitioning process, see the example for a 1TB SSD:
 
