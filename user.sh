@@ -56,7 +56,7 @@ echo 127.0.1.1 $hostname  >> /etc/hosts
 #Root Account
 echo "Please set a password for the root account:" && passwd
 echo " "
-read -p "Please create a user account by entering a user name in lowercase:" useracc
+read -p "Please create a user account by entering a user name in lowercase: " useracc
 useradd -m -g users -G wheel,storage,power -s /bin/bash $useracc
 echo "Please set a password for the user account:" && passwd $useracc
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
