@@ -42,13 +42,12 @@ echo -ne "[Running] Partitioning
 "
 #https://www.rodsbooks.com/gdisk/sgdisk-walkthrough.html
 #https://linux.die.net/man/8/sgdisk
-sgdisk -p /dev/sda && echo " "
-sgdisk -p /dev/sdb && echo " "
-sgdisk -p /dev/sdc && echo " "
-sgdisk -p /dev/sdd && echo " "
-read -p "Please choose the drive you want to use (WARN: The drive will be wiped entirely): " drive
+lsblk
+echo " "
+read -p "Please choose the drive you want to use (WARN: The drive will be formatted entirely): " drive
+sgdisk -p /dev/$drive && echo " "
 sgdisk --zap-all /dev/$drive
-echo -ne "Starting the partitioning process, see the example for a 1TB SSD:
+echo -ne "Starting the partitioning process on $drive, see the example for a 1TB SSD:
 
   'NEW', first sector hit ENTER for default
   Size enter 512MiB, ENTER; Specfiy efi boot partition, type: EF00
