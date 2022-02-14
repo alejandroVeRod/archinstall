@@ -120,7 +120,16 @@ When=PostTransaction
 Exec=/usr/bin/mkinitcpio -P
     " > /etc/pacman.d/hooks/nvidia
     # ___________________________________________
-    echo "Nvidia GPU: Done. Changed mkinitcpio.conf, bootloader default.conf and created pacman hook."
+    # Create X11 config:
+    nvidia-xconfig
+    echo -ne "Section \"OutputClass\"
+    Identifier \"nvidia dpi settings\"
+    MatchDriver \"nvidia-drm\"
+    Option \"UseEdidDpi\" \"False\"
+    Option \"DPI\" \"96 x 96\"
+EndSection" >> /etc/X11/xorg.conf
+    # ___________________________________________
+    echo "Nvidia GPU: Done. Changed mkinitcpio.conf, bootloader-default.conf, xorg.conf and created pacman hook."
 elif lspci | grep 'VGA' | grep -E "Radeon|AMD"; then
     pacman -S mesa lib32-mesa xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader vulkan-tools --noconfirm
     echo "options root=PARTLABEL=root rw" >> /boot/loader/entries/default.conf
