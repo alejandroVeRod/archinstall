@@ -42,6 +42,7 @@ read -p "Install Game Dev Suite (Godot, Blender3D) (Y/n)? " gameDev
 if [ $gameDev == "y" ] || [ $gameDev == "Y" ]; then
     pacman -S godot
     pacman -S blender
+fi
 
 echo " "
 read -p "Please re-enter your user account name in lowercase: " useracc2
