@@ -38,11 +38,7 @@ pacman -S ffmpeg obs-studio --noconfirm
 #Emus
 pacman -S ppsspp desmume pcsx2 realtime-privileges --noconfirm
 #GameDev
-read -p "Install Game Dev Suite (Godot, Blender3D) (Y/n)? " gameDev
-if [ $gameDev == "y" ] || [ $gameDev == "Y" ]; then
-    pacman -S godot
-    pacman -S blender
-fi
+pacman -S godot blender --noconfirm
 
 echo " "
 read -p "Please re-enter your user account name in lowercase: " useracc2
