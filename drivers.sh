@@ -12,16 +12,14 @@ if grep -E "GenuineIntel" <<< ${proc_type}; then
     echo -ne "title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
-initrd /initramfs-linux.img
-    " > /boot/loader/entries/default.conf
+initrd /initramfs-linux.img" > /boot/loader/entries/default.conf
 elif grep -E "AuthenticAMD" <<< ${proc_type}; then
     echo "AMD microcode: Installing and regenerating bootloader default.conf"
     pacman -Sy --noconfirm amd-ucode
     echo -ne "title Arch Linux
 linux /vmlinuz-linux
 initrd /amd-ucode.img
-initrd /initramfs-linux.img
-    " > /boot/loader/entries/default.conf
+initrd /initramfs-linux.img" > /boot/loader/entries/default.conf
 fi
 
 #Probing for GPU model
@@ -102,8 +100,7 @@ HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)
 
 # COMPRESSION_OPTIONS
 # Additional options for the compressor
-#COMPRESSION_OPTIONS=()
-    " > /etc/mkinitcpio.conf
+#COMPRESSION_OPTIONS=()" > /etc/mkinitcpio.conf
     # ___________________________________________
     # Create Nvidia Pacman Hook ("nvidia", "nvidia.hook" both work):
     mkdir /etc/pacman.d/hooks
@@ -117,8 +114,7 @@ Target=nvidia
 [Action]
 Depends=mkinitcpio
 When=PostTransaction
-Exec=/usr/bin/mkinitcpio -P
-    " > /etc/pacman.d/hooks/nvidia
+Exec=/usr/bin/mkinitcpio -P" > /etc/pacman.d/hooks/nvidia
     # ___________________________________________
     # Create X11 config:
     nvidia-xconfig
