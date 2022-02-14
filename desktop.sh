@@ -37,6 +37,12 @@ pacman -S libreoffice-still ttf-caladea ttf-carlito ttf-dejavu ttf-liberation tt
 pacman -S ffmpeg obs-studio --noconfirm
 #Emus
 pacman -S ppsspp desmume pcsx2 realtime-privileges --noconfirm
+#GameDev
+read -p "Install Game Dev Suite (Godot, Blender3D) (Y/n)? " gameDev
+if [ $gameDev == "y" ] || [ $gameDev == "Y" ]; then
+    pacman -S godot
+    pacman -S blender
+
 echo " "
 read -p "Please re-enter your user account name in lowercase: " useracc2
 usermod -a -G realtime $useracc2
