@@ -122,12 +122,14 @@ Exec=/usr/bin/mkinitcpio -P
     # ___________________________________________
     # Create X11 config:
     nvidia-xconfig
-    echo -ne "Section \"OutputClass\"
+    echo -ne "
+Section \"OutputClass\"
     Identifier \"nvidia dpi settings\"
     MatchDriver \"nvidia-drm\"
     Option \"UseEdidDpi\" \"False\"
     Option \"DPI\" \"96 x 96\"
-EndSection" >> /etc/X11/xorg.conf
+EndSection
+" >> /etc/X11/xorg.conf
     # ___________________________________________
     echo "Nvidia GPU: Done. Changed mkinitcpio.conf, bootloader-default.conf, xorg.conf and created pacman hook."
 elif lspci | grep 'VGA' | grep -E "Radeon|AMD"; then
