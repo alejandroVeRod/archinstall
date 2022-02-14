@@ -42,13 +42,16 @@ read -p "Please re-enter your user account name in lowercase: " useracc2
 usermod -a -G realtime $useracc2
 echo "*      soft      memlock      unlimited" >> /etc/security/limits.conf
 echo "*      soft      memlock      unlimited" >> /etc/security/limits.conf
-#VMs
+#VMs(1)
 pacman -S dnsmasq ebtables qemu libvirt virt-manager --noconfirm
-systemctl enable libvirtd.service
 usermod -G libvirt -a $useracc2
+systemctl enable libvirtd.service
 systemctl restart libvirtd.service
 systemctl restart firewalld.service
 firewall-cmd --add-service libvirt --zone=libvirt
+#VMs(2)
+pacman -S virtualbox-host-dkms virtualbox virtualbox-guest-iso --noconfirm
+usermod -G vboxusers -a $useracc2
 echo -ne "[Finished] Standard Applications
 
 "
