@@ -3,7 +3,7 @@
 
 ```
 pacman -Sy git
-git clone https://github.com/Leahjen/archinstall
+git clone https://github.com/alejandroVeRod/archinstall
 cd archinstall
 chmod +x ./archinstall.sh
 ```
