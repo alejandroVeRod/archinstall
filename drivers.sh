@@ -28,9 +28,8 @@ fi
 #NVIDIA: regenerate mkinitcpio.conf, bootloader default.conf and create pacman hook...
 gpu_type=$(lspci)
 if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
-    pacman -S mesa lib32-mesa nvidia-dkms nvidia-utils opencl-nvidia lib32-opencl-nvidia libglvnd lib32-libglvnd lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader --noconfirm
-    # Package "nvidia" not needed? Apparently blacklists Nouveau...
-    # Nouveau: "xf86-video-nouveau" would be all? (open source nvidia driver, avoid)
+    pacman -S mesa lib32-mesa nvidia-dkms nvidia-utils opencl-nvidia lib32-opencl-nvidia libglvnd lib32-libglvnd lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader vulkan-tools --noconfirm
+    # Package "nvidia" not needed, used dkms, "xf86-video-nouveau" for nouveau (open source nvidia driver, avoid)
     # ___________________________________________
     # Changing bootloader default.conf, append:
     echo "options root=PARTLABEL=root rw nvidia-drm.modeset=1" >> /boot/loader/entries/default.conf
